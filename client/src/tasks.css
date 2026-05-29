@@ -1,0 +1,297 @@
+/* Контейнер TasksPage */
+.tasks-page {
+  display: flex;
+  min-height: 100vh;
+  font-family: sans-serif;
+  gap: 1rem;
+}
+
+/* Ліва панель зі списком задач */
+.tasks-sidebar {
+  width: 30%;
+  border-right: 1px solid #ddd;
+  padding: 1rem;
+}
+
+/* Список задач */
+.tasks-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tasks-sidebar li {
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.tasks-sidebar li:hover {
+  background-color: rgba(79, 70, 229, 0.1);
+}
+
+.tasks-sidebar li.selected {
+  background-color: #6366f1;
+  color: #fff;
+}
+
+/* Права панель */
+.tasks-main {
+  flex: 1;
+  max-width: 70%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Блок завдання */
+.task-card {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+/* Редактор коду */
+.code-editor {
+  width: 100%;
+  max-height: 70vh;
+  min-height: 400px;
+  font-family: monospace;
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 1rem;
+  border-radius: 8px;
+  resize: vertical;
+  overflow: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+/* Fancy кнопки на TasksPage */
+.tasks-main .fancy-button {
+  background-color: #4f46e5;
+  color: #fff;
+  padding: 0.7rem 1.4rem;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+.tasks-main .fancy-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(79,70,229,0.4);
+}
+
+/* stdin маленький квадратик */
+.stdin-input {
+  width: 60px;
+  height: 28px;
+  font-size: 14px;
+  padding: 4px;
+  margin-top: 4px;
+  resize: none;
+  box-sizing: border-box;
+}
+
+/* Контейнери ліво-право */
+.tasks-main-left {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tasks-main-right {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Горизонтальний контейнер для редактора та результатів */
+.task-editor-and-results {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Ліва колонка: код, stdin, кнопки */
+.task-editor-column {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Виправлено textarea, щоб не виступав за блок */
+.task-card textarea.code-editor {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Права колонка: результати */
+.task-results-column {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  padding-bottom: 1rem;
+}
+
+/* Блок обгортка для результатів */
+.task-result-block-wrapper {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.75rem;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+/* Внутрішній блок результатів */
+.task-result-inner {
+  margin-top: 0.5rem;
+}
+
+/* Підсвічування результатів */
+.task-result-block.error {
+  border: 2px solid #e74c3c;
+  background-color: #fdecea;
+  color: #c0392b;
+}
+
+.task-result-block.success {
+  border: 2px solid #2ecc71;
+  background-color: #eafaf1;
+  color: #27ae60;
+}
+
+/* Вікно результату коду та автотестів */
+.task-pre {
+  display: block;
+  width: 250px;
+  min-height: 40px;
+  max-height: 100px;
+  overflow: auto;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f5f5f5;
+  font-family: monospace;
+  white-space: pre-wrap;
+  margin-top: 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Повідомлення про правильний/неправильний результат */
+.hint-success {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  background-color: #d4edda;
+  border: 1px solid #28a745;
+  color: #155724;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.hint-error {
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  background-color: #f8d7da;
+  border: 1px solid #e74c3c;
+  color: #721c24;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+/* Dark mode */
+.tasks-page.dark {
+  background-color: transparent;
+  color: #e5e5e5;
+}
+
+.tasks-page.dark .tasks-sidebar {
+  border-right: 1px solid #333;
+}
+
+.tasks-page.dark .tasks-sidebar li.selected {
+  background-color: #4f46e5;
+}
+
+.tasks-page.dark .code-editor {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.tasks-page.dark .task-pre {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+  border: 1px solid #555;
+}
+
+.tasks-page.dark .task-result-block.error {
+  background-color: #5c1f1f;
+  border-color: #e74c3c;
+  color: #f8d7da;
+}
+
+.tasks-page.dark .task-result-block.success {
+  background-color: #1f3d2f;
+  border-color: #2ecc71;
+  color: #a0f0b0;
+}
+
+/* Dark mode для hint повідомлень */
+.tasks-page.dark .hint-success {
+  background-color: #1f3d2f;
+  border-color: #2ecc71;
+  color: #a0f0b0;
+}
+
+.tasks-page.dark .hint-error {
+  background-color: #5c1f1f;
+  border-color: #e74c3c;
+  color: #f8d7da;
+}
+
+/* Dark mode для обгорток результатів */
+.tasks-page.dark .task-result-block-wrapper {
+  background-color: #1e1e1e; /* темний фон замість світлого */
+  border-color: #555;
+  color: #e5e5e5;
+}
+
+.tasks-page.dark .task-results-column {
+  background-color: transparent; /* прибираємо будь-який світлий фон */
+}
+
+.tasks-page.dark .task-result-inner {
+  color: #e5e5e5;
+}
+
+/* Виконані/не виконані задачі в сайдбарі */
+.tasks-list-item.completed {
+  background-color: #d4edda; /* світло-зелений фон для виконаних */
+  color: #155724; /* темно-зелений текст */
+}
+
+.tasks-list-item.completed:hover {
+  background-color: #c3e6cb; /* трохи темніше при наведенні */
+}
+
+.tasks-list-item:not(.completed) {
+  background-color: #f8d7da; /* світло-червоний фон для невиконаних */
+  color: #721c24; /* темно-червоний текст */
+}
+
+.tasks-list-item:not(.completed):hover {
+  background-color: #f5c6cb; /* трохи темніше при наведенні */
+}

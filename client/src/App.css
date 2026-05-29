@@ -1,0 +1,69 @@
+.tech-app-shell {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.tech-app-shell::before,
+.tech-app-shell::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tech-app-shell::before {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(34, 197, 94, 0.18), transparent 28%),
+    radial-gradient(circle at 84% 18%, rgba(99, 102, 241, 0.2), transparent 30%),
+    radial-gradient(circle at 70% 82%, rgba(14, 165, 233, 0.14), transparent 28%),
+    linear-gradient(rgba(34, 197, 94, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+  background-size: auto, auto, auto, 48px 48px, 48px 48px;
+}
+
+.tech-app-shell::after {
+  z-index: 0;
+  background:
+    linear-gradient(115deg, transparent 0 38%, rgba(34, 197, 94, 0.08) 39%, transparent 40% 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 340px 340px, 100% 6px;
+  opacity: 0.65;
+}
+
+.tech-app-shell.dark::before {
+  opacity: 1;
+}
+
+.tech-app-shell.dark::after {
+  opacity: 0.55;
+}
+
+.tech-app-shell.light::before {
+  opacity: 1;
+  background:
+    linear-gradient(rgba(231, 240, 248, 0.12), rgba(231, 240, 248, 0.12)),
+    radial-gradient(circle at 18% 12%, rgba(34, 197, 94, 0.24), transparent 30%),
+    radial-gradient(circle at 84% 18%, rgba(79, 70, 229, 0.22), transparent 32%),
+    radial-gradient(circle at 70% 82%, rgba(14, 165, 233, 0.2), transparent 30%),
+    linear-gradient(rgba(34, 197, 94, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 70, 229, 0.11) 1px, transparent 1px);
+  background-size: auto, auto, auto, auto, 56px 56px, 56px 56px;
+}
+
+.tech-app-shell.light::after {
+  opacity: 0.48;
+  background:
+    linear-gradient(115deg, transparent 0 37%, rgba(34, 197, 94, 0.22) 38%, transparent 39% 100%),
+    linear-gradient(65deg, transparent 0 42%, rgba(79, 70, 229, 0.15) 43%, transparent 44% 100%),
+    radial-gradient(circle, rgba(14, 165, 233, 0.26) 0 1px, transparent 2px),
+    linear-gradient(180deg, rgba(79, 70, 229, 0.08) 1px, transparent 1px);
+  background-size: 260px 260px, 320px 320px, 112px 112px, 100% 8px;
+}
+
+.tech-app-content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
