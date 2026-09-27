@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-const mongoose = require("mongoose");
+const connectDB = require("./db");
 const authRoutes = require("./routes/auth");
 const progressRoutes = require("./routes/progress");
 const authMiddleware = require("./middleware/authMiddleware");
@@ -10,17 +10,14 @@ const authMiddleware = require("./middleware/authMiddleware");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const JUDGE0_URL = process.env.JUDGE0_URL;
-const MONGO_URI = process.env.MONGO_URI;
 
 // Middleware
-app.use(cors());
+const allowedOrigins = process.env.CORS_ORIGINS
+  ?.split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+app.use(cors({ origin: allowedOrigins?.length ? allowedOrigins : true }));
 app.use(express.json());
-
-// MongoDB
-mongoose
-  .connect(MONGO_URI)
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.error("❌ MongoDB connection error:", err));
 
 // Routes
 app.use("/api/auth", authRoutes);
@@ -235,5 +232,14 @@ app.post("/api/submissions", async (req, res) => {
   }
 });
 
-// Start server
-app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
+// Connect to MongoDB before accepting requests.
+async function startServer() {
+  await connectDB();
+  console.log("✅ MongoDB connected");
+  app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+}
+
+startServer().catch(() => {
+  console.error("❌ Server startup failed: MongoDB connection could not be established.");
+  process.exit(1);
+});

@@ -6,17 +6,13 @@ module.exports = async (req, res, next) => {
     const authHeader = req.headers.authorization || req.headers.Authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      console.log("Auth header missing or malformed:", authHeader);
       return res.status(401).json({ message: "Немає токена" });
     }
 
     const token = authHeader.split(" ")[1];
     if (!token) {
-      console.log("Token empty in header");
       return res.status(401).json({ message: "Токен порожній" });
     }
-
-    console.log("Token received on server:", token); // Для відлагодження
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
@@ -33,7 +29,6 @@ module.exports = async (req, res, next) => {
     req.user = user;
     next();
   } catch (err) {
-    console.error("Auth middleware error:", err.message || err);
     res.status(401).json({ message: "Недійсний токен" });
   }
 };
